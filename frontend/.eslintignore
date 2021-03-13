@@ -1,0 +1,5 @@
+# 忽略文件的语法检查
+src/assets
+public
+# *.js
+# *.vue

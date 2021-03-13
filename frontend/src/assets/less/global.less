@@ -1,0 +1,108 @@
+@theme-bg-color1: #40c9c6;  //hao
+@theme-bg-color2: #00bcd4;
+@theme-bg-color3: #36a3f7; //hao
+@theme-bg-color4: #009688;
+@theme-bg-color5: #4caf50;
+@theme-bg-color6: #00a65a;
+@theme-bg-color7: #9c27b0;
+@theme-bg-color8: #ff9800;
+@theme-bg-color9: #f4516c; // hao
+@theme-bg-color10: #f44336;
+@theme-bg-color: #324157;
+
+@theme-text-color: #ffffff;
+
+@header-background-color: @theme-bg-color !important;
+@header-font-color: @theme-text-color !important;
+/*.el-menu li, .el-menu li div {
+  background-color: @theme-bg-color !important;
+  color: @theme-text-color !important;
+}*/
+
+// 背景图片地址和大小
+.bis(@url) {
+  background-image: url(@url);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+//定位上下左右居中
+.ctp(@width, @height) {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -@height/2;
+  margin-left: -@width/2;
+}
+
+//宽高
+.wh(@width, @height) {
+  width: @width;
+  height: @height;
+}
+
+.oscar-bg {
+  background: @theme-bg-color2 !important;
+}
+.oscar-bg-text {
+  color: @theme-bg-color2 !important;
+}
+.oscar-text {
+  color: @theme-text-color !important;
+}
+.oscar-btn {
+  background: #a3e1e0d6 !important;
+  color: @theme-bg-color2 !important;
+  width: 100%;
+}
+
+.oscar-basic{
+  background: linear-gradient(@theme-bg-color1,@theme-bg-color2) !important;
+  //background: #14a0b1db !important;
+  color: @theme-text-color !important;
+  .van-field__control,.van-nav-bar__title,.van-icon,.van-nav-bar__text{
+    color:@theme-text-color !important;
+  }
+}
+.oscar-margin{
+  margin:20px;
+}
+//倾斜条幅
+.oscar-banner_sideways{
+  position:relative;
+  overflow: hidden;
+  img{
+    width: 100%;
+  }
+  .block{
+    width:100px;
+    height:100px;
+    position: absolute;
+    background: linear-gradient(#ff0000,#ffff00);
+    color: #ff0000;
+    top:-50px;
+    right:-50px;
+    transform: rotate(45deg);
+    span{
+      position: absolute;
+      bottom:0;
+      display: block;
+      width:100px;
+      font-weight: bold;
+      text-align: center;
+    }
+  }
+}
+
+
+.center{
+  text-align: center;
+}
+a:link{
+  color:inherit;
+}
+
+// system css
+.vux-header .vux-header-left a {
+  color: @theme-text-color !important;
+}
