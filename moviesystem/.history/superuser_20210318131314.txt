@@ -1,0 +1,3 @@
+Username: admin
+Email address: admin@qq.com
+Password: comp0022admin

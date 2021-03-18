@@ -1,0 +1,16 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Movie Management System</h1>
+  <p>Welcome to Movie Management System, a website developed by <em>COMP0022 Group5 </em>!</p>
+  <h2>Dynamic content</h2>
+  <p>The system has the following record counts:</p>
+  <ul>
+    <li><strong>Number of movies:</strong> {{ num_movies }}</li>
+    <li><strong>Number of movies with a rating of 5:</strong> {{ rating_5 }}</li>
+    <li><strong>Number of movies with a rating of 4:</strong> {{ rating_4 }}</li>
+    <li><strong>Number of movies with a rating of 3:</strong> {{ rating_3 }}</li>
+    <li><strong>Number of movies with a rating of 2:</strong> {{ rating_2 }}</li>
+    <li><strong>Number of movies with a rating of 1:</strong> {{ rating_1 }}</li>
+  </ul>
+{% endblock %}
