@@ -1,0 +1,8 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>{{movies[MovieID]}}</h1>
+  <h1>Title: {{ movies.MovieTitle }}</h1>
+  <p><strong>Movie ID:</strong> {{ movies.MovieID }}</p>
+  <p><strong>Genres:</strong> {{ movies.MovieGenres }}</p>
+{% endblock %}

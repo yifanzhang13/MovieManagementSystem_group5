@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Resp</title>
+</head>
+<body>
+    <h1>返回内容</h1>
+    {% for i in resp %}
+    <li>
+      <h1>Title: {{ movie.MovieTitle }}</h1>
+      <p><strong>Movie ID:</strong> {{ movie.MovieID }}</p>
+      <p><strong>Genres:</strong> {{ movie.MovieGenres }}</p>
+    </li>
+    {% endfor %}
+</body>
+</html>

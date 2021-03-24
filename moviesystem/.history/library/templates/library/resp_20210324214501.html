@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Resp</title>
+</head>
+<body>
+    <h1>返回内容</h1>
+    {% if report %}
+        <p>找到咯</p>
+        <h1>Title: {{ report.MovieTitle }}</h1>
+        <p><strong>Movie ID:</strong> {{ report.MovieID }}</p>
+        <p><strong>Genres:</strong> {{ report.MovieGenres }}</p>
+    {% else %}
+        {% for i in resp %}
+        <li>
+        <h1>Title: {{ i.MovieTitle }}</h1>
+        <p><strong>Movie ID:</strong> {{ i.MovieID }}</p>
+        <p><strong>Genres:</strong> {{ i.MovieGenres }}</p>
+        </li>
+        {% endfor %}
+    {% endif %}
+</body>
+</html>
