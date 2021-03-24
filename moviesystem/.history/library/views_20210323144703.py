@@ -33,7 +33,8 @@ def MoviesView(request):
         movies = cursor.execute('SELECT * FROM library_movies')
         results = cursor.fetchall()
     finally:
-        cursor.close()  
+        cursor.close()
+    
     all = []
     for row in results:
         dic = {
@@ -42,9 +43,16 @@ def MoviesView(request):
             'MovieGenres':row[2],
         }
         all.append(dic)
+    
     context = {
         'movies':all,
     }
+
+    # 所有的movie
+    # movies = Movies.objects.all()
+    # context = {
+    #     'movies':movies,
+    # }
     return render(request, 'Movies.html', context=context)
 
 

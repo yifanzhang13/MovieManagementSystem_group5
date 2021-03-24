@@ -1,0 +1,16 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Movie List</h1>
+  {% if movies %}
+  <ul>
+    {% for movie in movies %}
+      <li>
+        {{movie.MovieTitle}}: <a href="{{ Movie.get_absolute_url}}">{{ movie.MovieTitle}}</a>
+      </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>There are no movies in the library.</p>
+  {% endif %} 
+{% endblock %}
