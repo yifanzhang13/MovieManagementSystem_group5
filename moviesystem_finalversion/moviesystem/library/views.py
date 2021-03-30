@@ -130,12 +130,14 @@ def PopularMoviesView(request):
     cursor = connection.cursor()
     try:
         sql = '''
-            SELECT * 
-            FROM library_movies 
+            SELECT DISTINCT m.MovieID, m.MovieTitle, m.MovieGenres
+            FROM library_movies AS m
             WHERE MovieID IN (SELECT MovieID_id 
-                                FROM library_ratings 
-                                GROUP BY MovieID_id 
-                                HAVING avg(RatingScore) >= 4 AND count(RatingScore)>=100)
+            FROM library_ratings 
+            GROUP BY MovieID_id 
+            HAVING AVG(RatingScore) >= 4 AND COUNT(RatingScore)>=100)
+            ORDER BY m.MovieTitle ASC
+            LIMIT 100
         '''
         cursor.execute(sql)
         results = cursor.fetchall()
@@ -160,9 +162,9 @@ def PolarisingMoviesView(request):
     cursor = connection.cursor()
     try:
         sql = '''
-            SELECT MovieID_id 
-            FROM library_ratings 
-            GROUP BY MovieID_id
+            SELECT DISTINCT r.MovieID_id 
+            FROM library_ratings AS r
+            GROUP BY r.MovieID_id 
             HAVING COUNT(MovieID_id)>=10 
             ORDER BY STDDEV(RatingScore) DESC 
             LIMIT 20
@@ -228,6 +230,16 @@ def search(request):
     return render(request, "library/search.html", context=context)
 
 def handle(request):
+    sql_findtags = '''
+                SELECT m.MovieID, SUBSTR(MovieTitle, INSTR(MovieTitle,"(") + 1, 
+                INSTR(MovieTitle,")") - INSTR(MovieTitle,"(") - 1) AS extracted,
+                SUBSTRING_INDEX(SUBSTRING_INDEX(m.MovieGenres,'|',b.help_topic_id+1),'|',-1) AS genres
+                FROM library_movies AS m
+                JOIN
+                mysql.help_topic b
+                ON b.help_topic_id < (LENGTH(m.MovieGenres) - LENGTH(REPLACE(m.MovieGenres,'|',''))+1)
+                ORDER BY m.MovieID;
+    '''
     text = request.POST["search_content"] # user input text
     movie_report = {}
     po_list = []
