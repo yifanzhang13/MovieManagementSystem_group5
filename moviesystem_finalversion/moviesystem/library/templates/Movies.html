@@ -1,0 +1,26 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>{{ movie_title }}</h1> <br>
+  <strong>Sort by: </strong>
+  <select onchange="javascript: window.open(this.options[this.selectedIndex].value);" name="link">
+      <option >--Please Select--</option>
+      <option value="http://127.0.0.1:8000/library/sorted/">Alphabetic Order</option>
+      <option value="http://127.0.0.1:8000/library/reverse-sorted/">Reverse Alphabetic Order</option>
+      <option value="http://127.0.0.1:8000/library/popular-movies/">Popularity</option>
+      <option value="http://127.0.0.1:8000/library/polarising-movies/">Extreme Difference in Ratings</option>
+  </select>
+  <br>
+  <br>
+  {% if movies %}
+  <ul class="list-group">
+    {% for movie in movies %}
+      <li class="list-group-item">
+        {{movie.MovieID}}: <a href="{{ movies.get_absolute_url}}">{{ movie.MovieTitle}}</a>
+      </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>There are no movies in the library.</p>
+  {% endif %} 
+{% endblock %}

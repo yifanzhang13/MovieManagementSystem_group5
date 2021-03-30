@@ -1,0 +1,38 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h3>Predicting ratings page</h3>
+    <span>Please select your input userID and MovieName list, then you can make a prediction base on backend recommendation algorithm.</span> <br>
+    <span><strong>Notice</strong>: The moviename list should be movies that have already been released and the moviename list format should be like this(Two movie names should be separated by commas.): Toy Story (1995),Jumanji (1995)</span> <br>
+    <br>
+  <form action="/library/predicting-ratings/" method="post">
+  {%csrf_token%}
+      <div class="form-group">
+        <label for="in_userID"><strong>select userID</strong></label>
+        {% if in_userID %}
+            <input type="text" class="form-control" name="in_userID" value="{{in_userID}}" id="in_userID"/>
+          {% else %}
+            <input type="text" class="form-control" name="in_userID" id="in_userID"/>
+          {% endif %}
+      </div>
+      <div class="form-group">
+        <label for="in_movieID"><strong>select movieName</strong></label>
+          {% if in_movieID %}
+            <input type="text" class="form-control" name="in_movieID" value="{{in_movieID}}" id="in_movieID"/>
+          {% else %}
+            <input type="text" class="form-control" name="in_movieID" id="in_movieID"/>
+          {% endif %}
+      </div>
+      <button type="submit" class="btn btn-primary">to predict</button>
+  </form>
+
+
+  <div id="result_content">
+      {% if predict_ratings %}
+          <textarea class="form-control" id="content" style="width: 700px;height: 300px;">predict ratings on new movie is :{{ predict_ratings }}</textarea>
+        {% else %}
+          <textarea  class="form-control" id="content" content="" style="width: 700px;height: 300px;"></textarea>
+        {% endif %}
+  </div>
+
+{% endblock %}

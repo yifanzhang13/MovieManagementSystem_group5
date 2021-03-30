@@ -1,0 +1,163 @@
+{% extends "base_generic.html" %}
+{% block content %}
+    {% if report %}
+    <h1>Viewer Report</h1> <br>
+<!--         <h3>Movie: {{ report.MovieTitle }}</h3>
+        <p><strong>Movie ID:</strong> {{ report.MovieID }}</p>
+        <p><strong>Genres:</strong> {{ report.MovieGenres }}</p>
+        <p><strong>How many people have rated this movie:</strong> {{ report.number_of_ratings }}</p>
+        <p><strong>Average rating score of this movie:</strong> {{ report.average_rating_score }} / 5</p>
+        <p><strong>Tags of this movie:</strong> {{ report.tags }}</p>
+        <p><strong>Links of this movie:</strong> imdbID:{{ report.imdbID }}  tmdbID:{{report.tmdbID}}</p>
+        <ul>
+            <li><strong>Links of this movie:</strong></li>
+                <ul>
+                    <li>imdbID:{{ report.imdbID }}</li>
+                    <li>tmdbID:{{report.tmdbID}}</li>
+                </ul>
+        </ul> -->
+        <ul class="list-group">
+          <li class="list-group-item">
+            <strong>Name:</strong> {{ report.MovieTitle }} <br>
+            {% if report.MovieAlias %}
+                <strong>Alias:</strong> {{ report.MovieAlias }} <br>
+            {% endif %}
+          </li>
+          <li class="list-group-item">
+            <strong>Movie ID:</strong> {{ report.MovieID }}
+          </li>
+          <li class="list-group-item">
+            <strong>Genres:</strong> {{ report.MovieGenres }}
+          </li>
+          <li class="list-group-item">
+            <strong>Released year:</strong> {{ report.ReleasedYear }}
+          </li>
+          <li class="list-group-item">
+            <strong>How many people have rated this movie:</strong> {{ report.number_of_ratings }}
+          </li>
+          <li class="list-group-item">
+            <strong>Average rating score of this movie:</strong> {{ report.average_rating_score }} / 5
+          </li>
+          <li class="list-group-item">
+            <strong>Tags of this movie:</strong>
+            {% for i in report.tags %}
+                <ul>
+                    <li>{{i.tag}}</li>
+                </ul>
+            {% endfor %}
+          </li>
+          <li class="list-group-item">
+            <strong>Links of this movie:</strong>
+            <ul>
+                <li><strong>IMDb ID: </strong> {{report.imdbID}}</li>
+                <li><strong>TMDb ID: </strong> {{report.tmdbID}}</li>
+            </ul>
+          </li>
+          <li class="list-group-item">
+            <div id="container" style="min-width:400px;height:400px"></div>
+            <script language="JavaScript">
+                $(document).ready(function() {  
+                   var chart = {
+                      type: 'bar'
+                   };
+                   var title = {
+                      text: 'User Rating Bar Chart'   
+                   };
+                   var subtitle = {
+                      text: 'Data Source: movielens.org'  
+                   };
+                   var xAxis = {
+                      categories: ['5', '4', '3', '2', '1'],
+                      title: {
+                         text: 'Rating Score'
+                      }
+                   };
+                   var yAxis = {
+                      min: 0,
+                      title: {
+                         text: 'Vote Number',
+                         align: 'high'
+                      },
+                      labels: {
+                         overflow: 'justify'
+                      }
+                   };
+                   var tooltip = {
+                      valueSuffix: ' millions'
+                   };
+                   var plotOptions = {
+                      bar: {
+                         dataLabels: {
+                            enabled: true
+                         }
+                      }
+                   };
+                   var legend = {
+                      layout: 'vertical',
+                      align: 'right',
+                      verticalAlign: 'top',
+                      x: -40,
+                      y: 100,
+                      floating: true,
+                      borderWidth: 1,
+                      backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+                      shadow: true
+                   };
+                   var credits = {
+                      enabled: false
+                   };
+                   
+                   var num_rating_5 = {{ report.rating_5 }};
+                   var num_rating_4 = {{ report.rating_4 }};
+                   var num_rating_3 = {{ report.rating_3 }};
+                   var num_rating_2 = {{ report.rating_2 }};
+                   var num_rating_1 = {{ report.rating_1 }};
+
+                   var series= [{
+                        name: '',
+                        data: [num_rating_5, num_rating_4, num_rating_3, num_rating_2, num_rating_1]
+                        }
+                   ];     
+                      
+                   var json = {};   
+                   json.chart = chart; 
+                   json.title = title;   
+                   json.subtitle = subtitle; 
+                   json.tooltip = tooltip;
+                   json.xAxis = xAxis;
+                   json.yAxis = yAxis;  
+                   json.series = series;
+                   json.plotOptions = plotOptions;
+                   json.legend = legend;
+                   json.credits = credits;
+                   $('#container').highcharts(json);
+                  
+                });
+            </script>
+          </li>
+        </ul>
+    {% else %}
+    <h1>Search Result</h1>
+    <ul class="list-group">
+        {% for i in resp %}
+        <li class="list-group-item">
+            <h3>{{ i.MovieTitle }}</h3>
+            <strong>Movie ID:</strong> {{ i.MovieID }} <br>
+            <strong>Genres:</strong> {{ i.MovieGenres }}
+        </li>
+        <!-- <li>
+        <h1>Title: {{ i.MovieTitle }}</h1>
+        <p><strong>Movie ID:</strong> {{ i.MovieID }}</p>
+        <p><strong>Genres:</strong> {{ i.MovieGenres }}</p>
+        </li> -->
+        {% endfor %}        
+    </ul>
+<!--         {% for i in resp %}
+        <li>
+        <h1>Title: {{ i.MovieTitle }}</h1>
+        <p><strong>Movie ID:</strong> {{ i.MovieID }}</p>
+        <p><strong>Genres:</strong> {{ i.MovieGenres }}</p>
+        </li>
+        {% endfor %} -->
+    {% endif %}
+{% endblock %}

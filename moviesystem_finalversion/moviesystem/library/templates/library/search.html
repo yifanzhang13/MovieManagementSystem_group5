@@ -1,0 +1,11 @@
+{% extends "base_generic.html" %}
+{% block content %}
+    <form action="{% url 'handle' %}" method="POST">
+        {%csrf_token%}
+        <div class="form-group">
+            <label for="search_content"><strong>input movie name: </strong></label>
+            <input class="form-control" type="text" name='search_content' id="search_content">
+        </div>
+        <button class="form-control" type="submit" value="search">Query</button>
+    </form>
+{% endblock %}

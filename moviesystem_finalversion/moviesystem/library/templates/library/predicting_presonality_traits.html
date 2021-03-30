@@ -1,0 +1,28 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h3>Predicting personality traits page</h3>
+    <span>please select the userID<br/>
+        then you can make a prediction for he personality traits<br/>
+        base on backend recommendation algorithm .</span>
+  <form action="/library/predicting-personality-traits/" method="post">
+  {%csrf_token%}
+      <div class="form-group">
+          <label for="in_userID"><strong>select userID</strong></label>
+          {% if in_userID %}
+            <input type="text" class="form-control" name="userID" value="{{in_userID}}" id="userID"/>
+          {% else %}
+            <input type="text" class="form-control" name="userID" id="userID"/>
+          {% endif %}
+      </div>
+      <button type="submit" class="btn btn-primary">to predict</button>
+  </form>
+  <div id="result_content" class="form-group">
+    {% if tags_list %}
+      <textarea id="content" class="form-control" style="width: 700px;height: 300px;">the user personality traits are :{{ tags_list }}</textarea>
+    {% else %}
+      <textarea id="content" class="form-control" content="" style="width: 700px;height: 300px;"></textarea>
+    {% endif %}
+  </div>
+
+{% endblock %}

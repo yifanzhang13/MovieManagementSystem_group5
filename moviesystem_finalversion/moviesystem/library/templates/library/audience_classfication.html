@@ -1,0 +1,25 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Segmenting the audience for a released movie </h1>
+  {% if results %}
+  <table class="table table-condensed">
+    <thead class="thead-light">
+      <tr>
+        <th>userID</th>
+        <th>lable</th>
+        <th>ratings_ave</th>
+      </tr>
+    </thead>
+      {% for result in results %}
+      <tr>
+        <td>{{ result.userID }}</td>
+        <td>{{ result.lable }}</td>
+        <td>{{ result.ratings_ave }}</td>
+      </tr>
+      {% endfor %}
+  </table>
+  {% else %}
+    <p>There are no user in the library.</p>
+  {% endif %}
+{% endblock %}
