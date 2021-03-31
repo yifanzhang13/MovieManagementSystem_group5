@@ -2,11 +2,22 @@
 
 <sub>Source code of movie management system developed by Group 5</sub>
 
+
+
 ## Getting started
 
 These instructions can be used to run the project locally for development and testing.
 
+
+
 ## Installation
+
+cd into directory with `docker-compose.yml` file
+
+- docker-compose build
+- docker-compose up
+- Access website via `localhost:8000/library/`
+- docker-compose down
 
 
 
