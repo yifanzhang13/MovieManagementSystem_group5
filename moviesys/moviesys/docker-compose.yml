@@ -1,0 +1,18 @@
+version: '3'
+services:
+  db:
+    image: "mysql:5.6.46"
+    ports: 
+      - "3306:3306"
+    volumes:
+      - ./db:/var/lib/mysql
+    environment:
+      - MYSQL_DATABASE=comp0022
+      - MYSQL_ROOT_PASSWORD=125225
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
