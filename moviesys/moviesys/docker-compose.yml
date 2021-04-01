@@ -8,11 +8,13 @@ services:
       - ./db:/var/lib/mysql
     environment:
       - MYSQL_DATABASE=comp0022
-      - MYSQL_ROOT_PASSWORD=125225
+      - MYSQL_ROOT_PASSWORD=865330
   web:
     build: .
     command: python manage.py runserver 0.0.0.0:8000
     ports:
       - "8000:8000"
+    volumes:
+      - .:/code
     depends_on:
       - db

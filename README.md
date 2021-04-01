@@ -12,14 +12,15 @@ These instructions can be used to run the project locally for development and te
 
 ## Installation
 
-cd into directory with `docker-compose.yml` file
+- Modify the password of MySQL database in the `settings.py` and `docker-compose.yml` 
 
-- docker-compose build
-- docker-compose up
-- Access website via `localhost:8000/library/`
-- docker-compose down
+- cd into directory with `docker-compose.yml` file
+  - docker-compose build
+  - docker-compose up
+  - Access website via `localhost:8000/library/`
+  - docker-compose down
 
-
+  
 
 ## Acknowledgments
 

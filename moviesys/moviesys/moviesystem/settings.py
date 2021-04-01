@@ -80,7 +80,7 @@ DATABASES = {
         'NAME': 'comp0022',
         'USER': 'root',
         # 'PASSWORD': '865330',
-        'PASSWORD': '125225',
+        'PASSWORD': '865330',
         'HOST': 'db',
         'PORT': '3306',
     }
